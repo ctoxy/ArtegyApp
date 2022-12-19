@@ -24,8 +24,12 @@ namespace API.Extensions
             // CORS
             services.AddCors();
             // custom services
-
+            // creation du token utilisable pour le controleur
             services.AddScoped<ITokenService, TokenService>();
+            // creation du userrepository utilisable pour le controleur
+            services.AddScoped<IUserRepository, UserRepository>();
+            //utilisation de automapper pour les reponses
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }
     }
