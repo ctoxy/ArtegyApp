@@ -1,3 +1,68 @@
+<!-- REACTIVE FORM USING -->
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2> S'Inscrire</h2>
+    <hr>
+    <div class="mb-3">
+        <label style="margin-right: 10px;"> Je suis un(e):</label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="male" formControlName="gender"> Homme
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input ms-3" value="female" formControlName="gender"> Femme
+        </label>
+    </div>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['username'])"
+        [label]="'username'">
+    </app-text-input>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['knownAs'])"
+        [label]="'knownAs'">
+    </app-text-input>
+    <app-date-picker 
+        [formControl]="$any(registerForm.controls['dateOfBirth'])"
+        [label]="'DateOfBirth'"
+        [maxDate]="maxDate">
+    </app-date-picker>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['city'])"
+        [label]="'City'">
+    </app-text-input>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['country'])"
+        [label]="'Country'">
+    </app-text-input>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['password'])"
+        [label]="'Password'">
+    </app-text-input>
+    <app-text-input 
+        [formControl]="$any(registerForm.controls['confirmPassword'])"
+        [label]="'Confirm Password'">
+    </app-text-input>
+
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+    
+    <div class="text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit"> Enregistrer</button>
+        <button class="btn btn-default" type="button" (click)="cancel()"> Annuler</button>
+
+    </div>
+
+
+</form>
+
+<p>Form Value: {{registerForm.value | json}}/p>
+<p>Form Stauts: {{registerForm.status | json}}</p>
+
+
+<!-- TEMPLATE FORM USING 
 <form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
     <h2> S'Inscrire</h2>
     <hr>
@@ -5,7 +70,7 @@
         <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text"
             placeholder="Username">
     </div>
-    <!--
+   
     <div class="mb-3">
         <label >Qui est votre préféré ?</label>
         <select class="form-select">
@@ -13,7 +78,7 @@
                 {{user.userName}}
             </option>
         </select>
-    </div>-->
+    </div>
 
     <div class="mb-3">
         <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password"
@@ -27,4 +92,4 @@
     </div>
 
 
-</form>
+</form>-->
